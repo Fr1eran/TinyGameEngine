@@ -1,0 +1,5 @@
+{
+    "windowTitle": "TinyGameEngine",
+    "windowSize": [800,800],
+    "maximumDeltaTime": 0.03
+}

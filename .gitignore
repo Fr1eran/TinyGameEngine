@@ -1,0 +1,91 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# Build directories
+build/
+bin/
+lib/
+*build*/
+out/
+
+# Qt
+.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*object_script.*
+
+# Qt Creator
+*.user
+CMakeLists.txt.user*
+
+# Visual Studio
+.vs/
+*.sln
+*.suo
+*.ntvs*
+*.njsproj
+*.fsproj
+*.vcxproj
+*.vcxproj.user
+*.opensdf
+*.sdf
+*.cache
+*.ipch
+
+# VS Code
+.vscode/
+
+# OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
