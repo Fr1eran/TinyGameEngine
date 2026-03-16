@@ -1,0 +1,92 @@
+#include <Engine/Core/Engine.h>
+#include <Engine/Core/EngineConfig.h>
+#include <Engine/Utils/Logger.h>
+#include <SFML/Graphics/Sprite.hpp>
+
+Engine::Engine()
+    : m_window(sf::VideoMode(sf::Vector2u(gConfig.windowSize)), gConfig.windowTitle)
+    , m_context(m_window)
+{
+    m_window.setIcon(
+        sf::Image("C:/Users/ARCH/Documents/gitprojects/TinyGameEngine/Engine/Content/Textures/GamePad.png"));
+    m_window.setMinimumSize(m_window.getSize() / 2u);
+    m_window.setKeyRepeatEnabled(false);
+    m_window.setMouseCursorVisible(false);
+    if (gConfig.disableSfmlLogs)
+    {
+        sf::err().rdbuf(nullptr);
+    }
+
+    m_context.audio.SetGlobalVolume(gConfig.globalVolume);
+
+    m_context.save.Set("Scores", 10);
+
+    LOG_INFO("Window created");
+}
+
+bool Engine::IsRunning() const
+{
+    return m_window.isOpen();
+}
+
+void Engine::ProcessEvents()
+{
+    auto visitor = EngineVisitor{*this};
+    while (auto const event = m_window.pollEvent())
+    {
+        event->visit(visitor);
+    }
+}
+
+void Engine::Update()
+{
+    m_context.time.Update();
+    m_context.cursor.Update(m_context.time.GetDeltaTime());
+}
+
+void Engine::Render()
+{
+    m_window.clear();
+
+    // Update
+    m_context.renderer.BeginDrawing();
+    m_window.draw(sf::Sprite(m_context.renderer.FinishDrawing()));
+
+    m_window.display();
+}
+
+void Engine::EventWindowClose()
+{
+    m_window.close();
+    LOG_INFO("Window closed after {:.2f} seconds", m_context.time.GetElapsedTime());
+}
+
+void Engine::EventWindowResized(sf::Vector2u size)
+{
+    LOG_INFO("Window resized to: {}x{}", size.x, size.y);
+}
+
+void Engine::EventWindowFocusLost()
+{
+    LOG_INFO("Window focus lost");
+}
+
+void Engine::EventWindowFocusGained()
+{
+    LOG_INFO("Window focus gained");
+}
+
+void Engine::EventGamepadConnected(int id)
+{
+    LOG_INFO("Gamepad {} connected", id);
+}
+
+void Engine::EventGamepadDisconnected(int id)
+{
+    LOG_INFO("Gamepad {} disconnected", id);
+}
+
+void Engine::EventWindowScreenshot() const
+{
+    m_context.screenshot.Take();
+}

@@ -1,5 +1,22 @@
 {
     "windowTitle": "TinyGameEngine",
-    "windowSize": [800,800],
-    "maximumDeltaTime": 0.03
+    "windowSize": [
+        800,
+        800
+    ],
+    "maximumDeltaTime": 0.03,
+    "globalVolume": 30,
+    "backgroundColor": [
+        255,
+        255,
+        255
+    ],
+    "cursorRadius": 5,
+    "cursorSpeed": 800,
+    "cursorColor": [
+        255,
+        100,
+        0
+    ],
+    "joystickDeadZone": 0.1
 }

@@ -1,0 +1,20 @@
+#include <Engine/Core/EngineConfig.h>
+#include <fstream>
+#include <nlohmann/json.hpp>
+
+EngineConfig::EngineConfig()
+{
+    std::ifstream file("Content/config.json");
+    assert(file);
+
+    nlohmann::json json = nlohmann::json::parse(file);
+    windowTitle = json["windowTitle"];
+    windowSize = {json["windowSize"][0], json["windowSize"][1]};
+    maximumDeltaTime = sf::seconds(json["maximumDeltaTime"]);
+    globalVolume = json["globalVolume"];
+    backgroundColor = {json["backgroundColor"][0], json["backgroundColor"][1], json["backgroundColor"][2]};
+    cursorRadius = json["cursorRadius"];
+    cursorSpeed = json["cursorSpeed"];
+    cursorColor = {json["cursorColor"][0], json["cursorColor"][1], json["cursorColor"][2]};
+    joystickDeadZone = json["joystickDeadZone"];
+}

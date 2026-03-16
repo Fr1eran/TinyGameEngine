@@ -1,18 +1,13 @@
-aux_source_directory(. sources)
+# aux_source_directory(. sources)
 # file(GLOB sources CMAKE_CONFIGURE_DEPENDS *.cpp *.h)
 # add_executable(main PUBLIC ${sources})
 
-add_executable(Engine main.cpp
-    Engine.h Engine.cpp
-    EngineVisitor.h EngineVisitor.cpp
-    EngineConfig.h EngineConfig.cpp
-    Content/config.json
-    Logger.h
-    EngineContext.h EngineContext.cpp
-    RandomManager.h RandomManager.cpp
-    TimeManager.h TimeManager.cpp
-    SaveManager.h SaveManager.cpp )
-# add_library(Engine STATIC main.cpp)
+file(GLOB_RECURSE sources "src/*.cpp")
+add_executable(Engine ${sources})
+# add_library(Engine STATIC ${sources})
+
+# set include directories
+target_include_directories(Engine PUBLIC include)
 
 # set compile option
 target_compile_features(Engine PUBLIC cxx_std_20)
@@ -23,6 +18,7 @@ PUBLIC
     SFML::Window
     SFML::Audio
     SFML::System
+    TGUI::TGUI
 PRIVATE
     nlohmann_json::nlohmann_json
     spdlog::spdlog

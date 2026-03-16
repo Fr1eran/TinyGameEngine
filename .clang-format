@@ -1,0 +1,68 @@
+BasedOnStyle: Microsoft
+
+# 基本缩进
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+
+# 花括号风格
+BreakBeforeBraces: Allman
+
+# 访问修饰符
+AccessModifierOffset: -4
+IndentAccessModifiers: false
+
+# 类/结构体/函数
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+
+# 控制语句 
+SpaceBeforeParens: ControlStatements
+SpaceBeforeAssignmentOperators: true
+SpaceInEmptyParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# 指针/引用风格
+PointerAlignment: Left
+ReferenceAlignment: Left
+
+# 对齐
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: true
+
+# 参数与调用
+BinPackArguments: false
+BinPackParameters: false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# 构造函数初始化列表
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerIndentWidth: 4
+
+# 列限制
+ColumnLimit: 120
+
+# 预处理器
+IndentPPDirectives: None
+SortIncludes: false
+
+# 命名空间
+NamespaceIndentation: None
+
+# C++ 特定设置
+Standard: Latest
+Cpp11BracedListStyle: true
+
+# 空行控制
+MaxEmptyLinesToKeep: 1
+KeepEmptyLinesAtTheStartOfBlocks: false
+
+# 其他
+DerivePointerAlignment: false
+FixNamespaceComments: true
