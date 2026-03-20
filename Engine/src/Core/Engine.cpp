@@ -31,10 +31,17 @@ bool Engine::IsRunning() const
 
 void Engine::ProcessEvents()
 {
+    // 处理sfml事件前，先处理场景切换请求
+    if (const auto nextScene = m_context.scenes.FetchNextScene())
+    {
+        EventSceneChange(*nextScene);
+    }
+
     auto visitor = EngineVisitor{*this};
     while (auto const event = m_window.pollEvent())
     {
         event->visit(visitor);
+        m_context.gui.ProcessEvent(*event);
     }
 }
 
@@ -51,6 +58,9 @@ void Engine::Render()
     // Update
     m_context.renderer.BeginDrawing();
     m_window.draw(sf::Sprite(m_context.renderer.FinishDrawing()));
+
+    m_context.gui.Render();
+    m_context.cursor.Render();
 
     m_window.display();
 }
@@ -89,4 +99,19 @@ void Engine::EventGamepadDisconnected(int id)
 void Engine::EventWindowScreenshot() const
 {
     m_context.screenshot.Take();
+}
+
+void Engine::EventSceneChange(const std::string& name)
+{
+    // scene changing logic
+}
+
+void Engine::EventSceneRestart()
+{
+    m_context.scenes.RestartCurrentScene();
+}
+
+void Engine::EventSceneMenuReturn()
+{
+    m_context.scenes.ChangeScene("Menu");
 }

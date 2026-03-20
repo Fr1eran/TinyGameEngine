@@ -11,15 +11,15 @@ struct EngineVisitor
     // avoid cycle reference
     class Engine& engine;
 
-    void operator()(sf::Event::Closed const&);
-    void operator()(sf::Event::Resized const&);
-    void operator()(sf::Event::FocusLost const&);
-    void operator()(sf::Event::FocusGained const&);
-    void operator()(sf::Event::JoystickConnected const&);
-    void operator()(sf::Event::JoystickDisconnected const&);
-    void operator()(sf::Event::KeyPressed const&);
-    void operator()(sf::Event::JoystickButtonPressed const&);
-    void operator()(sf::Event const&) {}
+    void operator()(const sf::Event::Closed&);
+    void operator()(const sf::Event::Resized&);
+    void operator()(const sf::Event::FocusLost&);
+    void operator()(const sf::Event::FocusGained&);
+    void operator()(const sf::Event::JoystickConnected&);
+    void operator()(const sf::Event::JoystickDisconnected&);
+    void operator()(const sf::Event::KeyPressed&);
+    void operator()(const sf::Event::JoystickButtonPressed&);
+    void operator()(const sf::Event&) {}
 };
 
 #endif // ENGINEVISITOR_H
